@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+    font-family: Roboto;
+    background-color: #272c40;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; 
+    margin: 0; 
+}
+
+.container {
+    text-align: center; 
+    width: 20%; 
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+h1 {
+    font-weight: 700;
+    color: #272c40;
+}
+
+p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #565662;
+}
+
+span{
+    color: #ff5f57;
+}
+
+button {
+    margin-top: 20px; 
+    background-color: #272c40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 40px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover:focus {
+      background-image: linear-gradient(to right, #ff5f57, #ff477e);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="assets/images/icon-success.svg" alt="">
+        <h1>Thanks for subscribing!</h1>
+        <p>A confirmation email has been sent to <span id="email"></span>. Please open it and click the button inside to confirm your subscription.</p>
+        <a href="index.html"><button>Dismiss message</button></a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Extract email from URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+
+    // Update the HTML with the extracted email
+    const emailSpan = document.getElementById('email');
+    if (emailSpan) {
+        emailSpan.textContent = email;
+    }
+});
+
+    </script>
+</body>
+</html>

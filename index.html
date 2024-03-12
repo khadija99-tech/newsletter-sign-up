@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Elhabchi Khadija | Newsletter sign-up form with success message</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    body {
+      text-align: left;
+      font-family: Roboto;
+      background-color: #272c40;
+    }
+
+    .container {
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 25px;
+      padding: 20px;
+    }
+
+    .c2 {
+      margin-left: 20px;
+    }
+
+    .c3 {
+      display: none;
+    }
+
+    h1 {
+      font-weight: 700;
+      color: #272c40;
+    }
+
+    .c1 img {
+      width: 100%;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      color: #565662;
+    }
+
+    ul li {
+      position: relative;
+      line-height: 22px;
+      list-style: none;
+      color: #565662;
+      margin-bottom: 10px;
+    }
+
+    ul li img {
+      position: absolute;
+      left: -40px;
+      top: 30%;
+      transform: translateY(-50%);
+    }
+
+    form {
+      margin-top: 3em;
+    }
+
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      color: #272c40;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    form input {
+      display: block;
+      width: 86%;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    form input[type="button"] {
+      background-color: #272c40;
+      color: #ffffffdb;
+      font-weight: 600;
+      font-size: 15px;
+      width: 100%;
+    }
+
+
+    form input[type="email"]:hover:focus {
+      border-color: #272c40;
+    }
+
+
+    form input[type="button"]:hover:focus {
+      background-image: linear-gradient(to right, #ff5f57, #ff477e);
+    }
+
+
+    .attribution {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      color: white;
+      text-align: center;
+      transform: translateX(-50%);
+    }
+
+    a {
+      text-decoration: none;
+      color: #ff477e;
+    }
+
+    @media screen and (min-width: 940px) {
+
+      body {
+        font-family: Roboto;
+        background-color: #272c40;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        margin: 40px auto;
+        background-color: white;
+        border-radius: 25px;
+        padding: 20px;
+      }
+
+      .c1 {
+        display: none;
+      }
+
+      .c3 {
+        display: block;
+      }
+
+      .c2,
+      .c3 {
+
+        width: 48%;
+      }
+
+      .c2 {
+        margin: auto;
+      }
+
+      img {
+        margin-right: 0;
+      }
+
+      form input[type="email"] {
+        width: 95%;
+      }
+
+      ul li img {
+        position: absolute;
+        top: 30%;
+        transform: translateY(-50%);
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sign-up form start -->
+
+  <div class="container">
+
+    <div class="c1">
+      <img src="assets/images/illustration-sign-up-mobile.svg" alt="">
+    </div>
+
+    <div class="c2">
+      <h1>Stay updated!</h1>
+      <p>Join 60,000+ product managers receiving monthly updates on:</p>
+      <ul>
+        <li> <img src="assets/images/icon-list.svg" alt=""> Product discovery and building what matters </li>
+        <li> <img src="assets/images/icon-list.svg" alt=""> Measuring to ensure updates are a success </li>
+        <li> <img src="assets/images/icon-list.svg" alt=""> And much more! </li>
+      </ul>
+      <form action="">
+        <label for="email">Email address</label>
+        <input type="email" placeholder="email@company.com">
+        <input type="button" value="Subscribe to monthly newsletter">
+
+      </form>
+    </div>
+
+    <div class="c3">
+      <img src="assets/images/illustration-sign-up-desktop.svg" alt="">
+    </div>
+
+
+  </div>
+
+  <!-- Sign-up form end -->
+
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Elhabchi Khadija</a>.
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const emailInput = document.querySelector('input[type="email"]');
+      const subscribeButton = document.querySelector('input[type="button"]');
+      const container = document.querySelector('.container');
+
+      // Function to validate email format
+      function validateEmail(email) {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      }
+
+      // Function to show error message
+      function showErrorMessage(message) {
+        const errorMessage = document.createElement('label');
+        errorMessage.classList.add('error-message');
+        errorMessage.textContent = message;
+        container.appendChild(errorMessage);
+        const rect = emailInput.getBoundingClientRect();
+        errorMessage.style.color = '#ff5f57';
+        errorMessage.style.position = 'fixed';
+        errorMessage.style.top = '390px';
+        errorMessage.style.left = '865px';
+        setTimeout(() => {
+          errorMessage.remove(); // Remove error message after 3 seconds
+        }, 3000);
+      }
+
+      // Event listener for subscribe button click
+      subscribeButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default form submission
+        const email = emailInput.value.trim();
+        if (!email) {
+          showErrorMessage('Please enter your email.');
+          emailInput.style.borderColor = '#ff5f57';
+          emailInput.style.backgroundColor = '#ffebec';
+          return;
+        }
+        if (!validateEmail(email)) {
+          showErrorMessage('Please enter a valid email address.');
+          emailInput.style.borderColor = '#ff5f57';
+          emailInput.style.backgroundColor = '#ffebec';
+          return;
+        }
+        // Redirect to success page with email as a query parameter
+        window.location.href = `success.html?email=${encodeURIComponent(email)}`;
+      });
+    });
+
+
+  </script>
+</body>
+
+</html>
